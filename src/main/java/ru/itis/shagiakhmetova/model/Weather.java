@@ -1,9 +1,18 @@
 package ru.itis.shagiakhmetova.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.util.Date;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
-@Table(name = "history")
+@Table(name = "weather")
 public class Weather {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -13,49 +22,13 @@ public class Weather {
     private String humidity;
     private String city;
 
-    public Weather() {
-    }
+    @OneToOne(mappedBy = "weather")
+    private Appeal appeal;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public String getTemp() {
-        return temp;
-    }
-
-    public void setTemp(String temp) {
-        this.temp = temp;
-    }
-    public String getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(String humidity) {
-        this.humidity = humidity;
-    }
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-    public Weather(String email,String temp, String humidity, String city) {
+    public Weather(String email, String temp, String humidity, String name) {
         this.email = email;
         this.temp = temp;
         this.humidity = humidity;
-        this.city = city;
+        this.city = name;
     }
 }

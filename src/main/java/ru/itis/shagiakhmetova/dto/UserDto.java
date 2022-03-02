@@ -1,53 +1,36 @@
 package ru.itis.shagiakhmetova.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import ru.itis.shagiakhmetova.model.User;
 
+import javax.validation.constraints.NotBlank;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class UserDto {
     private Integer id;
+
+    @NotBlank(message = "Name shouldn't be blank!")
     private String name;
+
+    @NotBlank(message = "Email shouldn't be blank!")
     private String email;
+
+    @NotBlank(message = "Password shouldn't be blank!")
     private String password;
 
-    public Integer getId() {
-        return id;
+    public static UserDto from(User user) {
+        return UserDto.builder()
+                .id(user.getId())
+                .name(user.getName())
+                .email(user.getEmail())
+                .password(user.getPassword())
+                .build();
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public UserDto(Integer id, String name, String email, String password) {
-        this.id = id;
-        this.name = name;
-        this.email = email;
-        this.password = password;
-    }
-
-    public static UserDto fromModel(User user) {
-        return new UserDto(user.getId(), user.getName(), user.getEmail(), user.getPassword());
-    }
 }

@@ -1,6 +1,6 @@
 package ru.itis.shagiakhmetova.helper;
 
-import javax.xml.bind.DatatypeConverter;
+import jakarta.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
