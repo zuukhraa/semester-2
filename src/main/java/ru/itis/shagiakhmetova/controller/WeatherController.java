@@ -1,10 +1,10 @@
 package ru.itis.shagiakhmetova.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 import ru.itis.shagiakhmetova.dto.WeatherDto;
 import ru.itis.shagiakhmetova.model.Weather;
 import ru.itis.shagiakhmetova.service.MainService;
@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
-@RestController
+@Controller
 public class WeatherController {
 
     private final MainService mainService;
