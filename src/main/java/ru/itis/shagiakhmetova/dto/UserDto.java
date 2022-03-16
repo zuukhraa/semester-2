@@ -6,22 +6,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.itis.shagiakhmetova.model.User;
 
-import javax.validation.constraints.NotBlank;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 public class UserDto {
     private Integer id;
-
-    @NotBlank(message = "Name shouldn't be blank!")
     private String name;
-
-    @NotBlank(message = "Email shouldn't be blank!")
     private String email;
-
-    @NotBlank(message = "Password shouldn't be blank!")
     private String password;
 
     public static UserDto from(User user) {
@@ -31,6 +23,10 @@ public class UserDto {
                 .email(user.getEmail())
                 .password(user.getPassword())
                 .build();
+    }
+
+    public static UserDto fromModel(User user) {
+        return new UserDto(user.getId(), user.getName(), user.getEmail(), user.getPassword());
     }
 
 }

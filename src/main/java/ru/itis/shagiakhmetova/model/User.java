@@ -29,6 +29,11 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
+    private boolean enabled;
+
+    @Column(length = 64)
+    private String verificationCode;
+
     @OneToMany(mappedBy = "user")
     private List<Appeal> appeals;
 
@@ -40,4 +45,10 @@ public class User {
     )
     private Set<Role> roles;
 
+    public User(String name, String email, String encode, String code) {
+        this.name = name;
+        this.email = email;
+        this.password = encode;
+        this.verificationCode = code;
+    }
 }

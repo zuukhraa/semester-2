@@ -1,6 +1,7 @@
 package ru.itis.shagiakhmetova.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import ru.itis.shagiakhmetova.dto.UserDto;
 import ru.itis.shagiakhmetova.dto.WeatherDto;
@@ -28,7 +29,8 @@ public class MainServiceImpl implements MainService {
     }
 
     @Override
-    public Weather getWeather(Optional<String> city, String email) throws IOException {
+    public Weather getWeather(Optional<String> city, Authentication authentication) throws IOException {
+        String email = authentication.getName();
         UserDto user = userRepository.findByEmail(email);
         if (user != null) {
             String result = WeatherHelper.getCity(city.orElse("Kazan"));
