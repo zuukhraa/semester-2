@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.5">
+
+    <changeSet id="2022-03-23--01-init-tables" author="shagiakhmetova">
+        <createTable tableName="users">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type = "varchar(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="enabled" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type = "varchar(64)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="verificationCode" type = "varchar(64)">
+            </column>
+        </createTable>
+
+        <createTable tableName="weather">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="email" type = "varchar(255)">
+                <constraints unique="true"/>
+            </column>
+            <column name="city" type="varchar(255)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="temp" type="varchar(255)" >
+                <constraints nullable="false"/>
+            </column>
+            <column name="humidity" type="varchar(255)" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="appeal">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="integer">
+                <constraints foreignKeyName="user_id" nullable="false" references="users(id)"/>
+            </column>
+            <column name="weather_id" type="integer">
+                <constraints foreignKeyName="weather_id" nullable="false" references="weather(id)"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="roles">
+            <column name="id" type="serial" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(255)" >
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="user_role">
+            <column name="user_id" type="integer">
+                <constraints foreignKeyName="user_id" nullable="false" references="users(id)"/>
+            </column>
+            <column name="role_id" type="integer">
+                <constraints foreignKeyName="role_id" nullable="false" references="roles(id)"/>
+            </column>
+        </createTable>
+
+    </changeSet>
+</databaseChangeLog>
