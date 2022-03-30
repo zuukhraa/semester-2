@@ -41,17 +41,18 @@ public class UserControllerTest {
     }
 
     @Test
-    public void testGetUser() throws Exception {
-        mockMvc.perform(get("/user/1")
+    public void testGetAll() throws Exception {
+        mockMvc.perform(get("/user")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("name").value("Ivan"));
+                .andExpect(jsonPath("$[0].name").value("Ivan"));
+
     }
 
     @Test
-    public void testGetAll() throws Exception {
-        mockMvc.perform(get("/user")
+    public void testGetUser() throws Exception {
+        mockMvc.perform(get("/user/1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
@@ -64,4 +65,5 @@ public class UserControllerTest {
                 andExpect(status().isOk()).
                 andExpect(content().string("verification_success"));
     }
+
 }

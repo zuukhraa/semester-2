@@ -16,11 +16,13 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/user")
+    @ResponseBody
     public Iterable<UserDto> getAll() {
         return userService.getAll();
     }
 
     @GetMapping("/user/{id}")
+    @ResponseBody
     public UserDto getUser(@PathVariable Integer id) {
         return userService.get(id);
     }
@@ -33,6 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/verification")
+    @ResponseBody
     public String verify(@Param("code") String code) {
         if (userService.verify(code)) {
             return "verification_success";

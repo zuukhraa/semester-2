@@ -36,12 +36,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Iterable<UserDto> getAll() {
-        return userRepository.findAll().stream().map(UserDto::from).collect(Collectors.toList());
+        return userRepository.findAll().stream().map(UserDto::fromModel).collect(Collectors.toList());
     }
 
     @Override
     public UserDto get(Integer id) {
-        return userRepository.findById(id).stream().map(UserDto::from).findFirst().orElse(null);
+        return userRepository.findById(id).stream().map(UserDto::fromModel).findFirst().orElse(null);
     }
 
     @Override
