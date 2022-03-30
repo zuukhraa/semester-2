@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import ru.itis.shagiakhmetova.model.User;
 import ru.itis.shagiakhmetova.model.Weather;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -32,4 +33,9 @@ public class WeatherDto {
     public static List<WeatherDto> from(List<Weather> weathers) {
         return weathers.stream().map(WeatherDto::from).collect(Collectors.toList());
     }
+
+    public static WeatherDto fromModel(Weather weather) {
+        return new WeatherDto(weather.getId(), weather.getEmail(), weather.getTemp(), weather.getHumidity(), weather.getCity());
+    }
+
 }

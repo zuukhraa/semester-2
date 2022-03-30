@@ -14,6 +14,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import ru.itis.shagiakhmetova.Application;
 import ru.itis.shagiakhmetova.model.User;
 import ru.itis.shagiakhmetova.repository.UserRepository;
+import ru.itis.shagiakhmetova.service.UserService;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -30,6 +31,7 @@ public class UserControllerTest {
     @Autowired
     private UserRepository userRepository;
 
+
     @Before
     public void init() {
         User user = new User();
@@ -40,15 +42,15 @@ public class UserControllerTest {
         userRepository.save(user);
     }
 
-    @Test
-    public void testGetAll() throws Exception {
-        mockMvc.perform(get("/user")
-                        .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$[0].name").value("Ivan"));
-
-    }
+//    @Test
+//    public void testGetAll() throws Exception {
+//        mockMvc.perform(get("/user")
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+//                .andExpect(jsonPath("$[0].name").value("Ivan"));
+//
+//    }
 
     @Test
     public void testGetUser() throws Exception {
@@ -59,11 +61,12 @@ public class UserControllerTest {
                 .andExpect(jsonPath("name").value("Ivan"));
     }
 
-    @Test
-    public void testVerify() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/verification?code=apple")).
-                andExpect(status().isOk()).
-                andExpect(content().string("verification_success"));
-    }
-
+//    @Test
+//    public void testVerify() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/verification?code=apple")).
+//                andExpect(status().isOk()).
+//                andExpect(content().string("verification_success"));
+//    }
+//
+//
 }

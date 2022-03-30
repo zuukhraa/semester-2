@@ -3,6 +3,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.shagiakhmetova.dto.UserDto;
 import ru.itis.shagiakhmetova.service.UserService;
@@ -32,6 +33,12 @@ public class UserController {
         String url = request.getRequestURL().toString().replace(request.getServletPath(), "");
         userService.signUp(userDto, url);
         return "sign_up_success";
+    }
+
+    @GetMapping("/sign_up")
+    public String getSignUp(Model model) {
+        model.addAttribute("user", new UserDto());
+        return "sign_up";
     }
 
     @GetMapping("/verification")

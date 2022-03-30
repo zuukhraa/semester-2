@@ -13,6 +13,7 @@ import ru.itis.shagiakhmetova.repository.UserRepository;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -35,7 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Iterable<UserDto> getAll() {
+    public List<UserDto> getAll() {
         return userRepository.findAll().stream().map(UserDto::fromModel).collect(Collectors.toList());
     }
 
@@ -46,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getByEmail(String email) {
-        return userRepository.getUserByEmail(email).stream().map(UserDto::from).findFirst().orElse(null);
+        return userRepository.getUserByEmail(email).stream().map(UserDto::fromModel).findFirst().orElse(null);
     }
 
     @Override
@@ -59,6 +60,11 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<UserDto> getAllByName(String name) {
+        return userRepository.findAllByName(name).stream().map(UserDto::fromModel).collect(Collectors.toList());
     }
 
     @Override

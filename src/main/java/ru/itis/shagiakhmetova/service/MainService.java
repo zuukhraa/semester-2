@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface MainService {
-    Iterable<WeatherDto> getAll();
+    List<WeatherDto> getAll();
     Weather getWeather(Optional<String> city, Authentication authentication) throws IOException;
     List<WeatherDto> getWeatherByCity (String city);
 }
