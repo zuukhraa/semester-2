@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import ru.itis.shagiakhmetova.aspect.Loggable;
 import ru.itis.shagiakhmetova.dto.AppealDto;
 import ru.itis.shagiakhmetova.dto.WeatherDto;
 import ru.itis.shagiakhmetova.helper.WeatherHelper;
@@ -42,6 +43,7 @@ public class WeatherController {
 
     @GetMapping("/appeals/{user_id}")
     @ResponseBody
+    @Loggable
     public List<AppealDto> getAppealsByUser(@PathVariable Integer user_id) {
         return appealService.getAppealsByUser(user_id);
     }
