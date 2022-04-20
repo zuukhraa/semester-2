@@ -17,7 +17,7 @@ public class HelloController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Message was received",
                     content = {
-                            @Content(mediaType = "application/json")
+                            @Content(mediaType = "text/html")
                     }
             )
     })
