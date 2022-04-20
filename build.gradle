@@ -31,6 +31,9 @@ dependencies {
     implementation group: 'javax.xml.bind', name: 'jaxb-api', version: '2.3.1'
     implementation group: 'org.springframework.boot', name: 'spring-boot-configuration-processor', version: '2.6.4'
     implementation 'org.liquibase:liquibase-core:4.9.0'
+    implementation 'io.springfox:springfox-swagger2:2.9.2'
+    implementation 'io.springfox:springfox-swagger-ui:2.9.2'
+    implementation 'org.springdoc:springdoc-openapi-ui:1.6.7'
 
     liquibaseRuntime('org.liquibase:liquibase-core:4.9.0')
     liquibaseRuntime('org.postgresql:postgresql:42.3.3')
